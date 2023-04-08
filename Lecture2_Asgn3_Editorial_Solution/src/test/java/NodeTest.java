@@ -53,16 +53,43 @@ public class NodeTest {
     }
 
     // Test constructor signature and functionality with node parameter
+//    @Test
+//    public void testConstructorWithNodeParameter() throws Exception {
+//        Constructor<Node> constructor = Node.class.getDeclaredConstructor(Node.class);
+//
+//        assertFalse(Modifier.isPrivate(constructor.getModifiers()));
+//
+//        int data = 5;
+//        Node originalNode = new Node(data);
+//        Field nextField = Node.class.getDeclaredField("next");
+//        nextField.setAccessible(true);
+//        nextField.set(originalNode, new Node(10));
+//
+//        Node copyNode = constructor.newInstance(originalNode);
+//
+//        Field dataField = Node.class.getDeclaredField("data");
+//        dataField.setAccessible(true);
+//        Field nextField2 = Node.class.getDeclaredField("next");
+//        nextField2.setAccessible(true);
+//
+//        int actualData = dataField.getInt(copyNode);
+//        assertNotNull(nextField2.get(copyNode));
+//        assertEquals(10, dataField.getInt(nextField2.get(copyNode)));
+//        assertNull(nextField2.get(nextField2.get(copyNode)));
+//        assertEquals(5, actualData);
+//        assertNull(nextField2.get(copyNode.next));
+//    }
     @Test
     public void testConstructorWithNodeParameter() throws Exception {
         Constructor<Node> constructor = Node.class.getDeclaredConstructor(Node.class);
         assertFalse(Modifier.isPrivate(constructor.getModifiers()));
 
         int data = 5;
-        Node originalNode = new Node(data);
+        Constructor<Node> dataConstructor = Node.class.getDeclaredConstructor(int.class);
+        Node originalNode = dataConstructor.newInstance(data);
         Field nextField = Node.class.getDeclaredField("next");
         nextField.setAccessible(true);
-        nextField.set(originalNode, new Node(10));
+        nextField.set(originalNode, dataConstructor.newInstance(10));
 
         Node copyNode = constructor.newInstance(originalNode);
 
