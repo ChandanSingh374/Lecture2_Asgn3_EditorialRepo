@@ -103,7 +103,7 @@ public class NodeTest {
         assertEquals(10, dataField.getInt(nextField2.get(copyNode)));
         assertNull(nextField2.get(nextField2.get(copyNode)));
         assertEquals(5, actualData);
-        assertNull(nextField2.get(copyNode.next));
+       
     }
 
 
