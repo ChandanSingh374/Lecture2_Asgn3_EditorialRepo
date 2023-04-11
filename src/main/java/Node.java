@@ -6,9 +6,6 @@ public class Node {
         this.data = data;
     }
 
-
-
-
     Node(Node node){
         this(node.data);
         if(node.next != null) {
